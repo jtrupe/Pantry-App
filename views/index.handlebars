@@ -1,6 +1,7 @@
 <div class="form-group">
   <label for="exampleFormControlSelect1">Select User</label>
   <select class="form-control" id="user-select">
+    <option value="0">choose user</option>
     {{#each dbUsers}}
     <option value={{dataValues.id}}>{{dataValues.name}}</option>
     {{/each}}
