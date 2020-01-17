@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function (app) {
   app.get("/login", function (req, res) {
     db.User.findAll({}).then(function (dbUsers) {
-      res.render('index', { dbUsers });
+      res.render('index', { title: "login", dbUsers });
     });
   });
 
