@@ -1,30 +1,31 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">Home-Cooked</h1>
+      <p class="lead text-center">Find recipies based on the ingredients you have on hand</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Select User</label>
+        <select class="form-control" id="user-select">
+          <option value="0">choose user</option>
+
+          {{#each dbUsers}}
+          <option value={{dataValues.id}}>{{dataValues.name}}</option>
           {{/each}}
-        </ul>
+          <br>
+        </select>
+
+
       </div>
+      <label for="exampleFormControlSelect1">New User</label>
+      <input type="text" id="username-create" class="form-control" placeholder="create user">
+      <br>
+      <button type="submit" id="user-create" class="btn btn-primary">Lets go!</button>
+      <div class="col-sm-4"></div>
     </div>
   </div>
 </div>
