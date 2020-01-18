@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS recipesDB;
 CREATE DATABASE recipesDB;
+USE recipesDB;
 
 
 -- USE recipesDB;
