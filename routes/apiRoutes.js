@@ -1,5 +1,6 @@
 var db = require("../models");
 var axios = require("axios");
+require("dotenv").config();
 
 module.exports = function(app) {
   app.post("/api/user/create", function(req, res) {
@@ -13,7 +14,7 @@ module.exports = function(app) {
     var url = "https://api.spoonacular.com/food/ingredients/autocomplete";
     var query = "?query=" + req.query.ingredientName;
     var numResults = "&number=" + "5";
-    var apiKey = "&apiKey=" + "e4111bae48a3477c90977f63b0c2d882";
+    var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
     axios.get(url + query + numResults + apiKey).then(function(response){
       res.send(response.data);
     });
