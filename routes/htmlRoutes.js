@@ -1,6 +1,7 @@
 var db = require("../models");
 
 module.exports = function (app) {
+  // This is the route to log in the user.
   app.get("/login", function (req, res) {
     db.User.findAll({}).then(function (dbUsers) {
       res.render('index', { title: "Login", dbUsers });
