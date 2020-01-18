@@ -1,16 +1,34 @@
-<div class="form-group">
-  <label for="exampleFormControlSelect1">Select User</label>
-  <select class="form-control" id="user-select">
-    <option value="0">choose user</option>
-    {{#each dbUsers}}
-    <option value={{dataValues.id}}>{{dataValues.name}}</option>
-    {{/each}}
-  </select>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">Home-Cooked</h1>
+      <p class="lead text-center">Find recipies based on the ingredients you have on hand</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Select User</label>
+        <select class="form-control" id="user-select">
+          <option value="0">choose user</option>
+
+          {{#each dbUsers}}
+          <option value={{dataValues.id}}>{{dataValues.name}}</option>
+          {{/each}}
+          <br>
+        </select>
+
+
+      </div>
+      <label for="exampleFormControlSelect1">New User</label>
+      <input type="text" id="username-create" class="form-control" placeholder="create user">
+      <br>
+      <button type="submit" id="user-create" class="btn btn-primary">Lets go!</button>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
 </div>
-
-<input type="text" id="username-create" class="form-control" placeholder="create user">
-<button type="submit" id="user-create" class="btn btn-primary">Lets go!</button>
-
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
