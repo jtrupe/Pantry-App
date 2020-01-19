@@ -15,7 +15,7 @@ module.exports = function(app) {
     var query = "?query=" + req.query.ingredientName;
     var numResults = "&number=" + "5";
     var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
-    axios.get(url + query + numResults + apiKey).then(function(response){
+    axios.get(url + query + numResults + apiKey).then(function(response) {
       res.send(response.data);
     });
   });
