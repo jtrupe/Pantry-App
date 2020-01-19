@@ -1,4 +1,4 @@
-$("#ingredient-search").keyup(function () {
+$("#ingredient-search").keyup(function() {
   var itemToSearch = $("#ingredient-search")
     .val()
     .trim();
