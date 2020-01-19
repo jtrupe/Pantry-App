@@ -1,4 +1,4 @@
-$("#ingredient-search").keyup(function() {
+$("#ingredient-search").keyup(function () {
   var itemToSearch = $("#ingredient-search")
     .val()
     .trim();
@@ -27,4 +27,16 @@ $("#ingredient-search").keyup(function() {
       $(".returned-search-items").append(newDiv);
     });
   });
+});
+
+// event listener to alter quantity of pantry item
+$(".pantry-item-alter").click(function() {
+  var itemId = this.value;
+  console.log("Alter item quantity ID " + itemId + " from user database");
+});
+
+// event listener to remove pantry item
+$(".pantry-item-remove").click(function() {
+  var itemId = this.value;
+  console.log("Remove item ID " + itemId + " from user database");
 });
