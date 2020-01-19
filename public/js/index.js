@@ -26,5 +26,5 @@ $("#user-create").click(function() {
 $("#user-select").change(function() {
   userId = this.value;
   console.log(userId);
-  window.location = "/recipes";
+  window.location = "/recipes/pantry";
 });
