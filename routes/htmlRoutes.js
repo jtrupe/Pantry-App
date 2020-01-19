@@ -9,7 +9,46 @@ module.exports = function (app) {
   });
 
   app.get("/pantry/manage", function (req, res) {
-    res.render('pantry', { title: "Pantry" });
+
+    var dummyPantryData = [
+      {
+        id:"2",
+        name:"egg",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      },
+      {
+        id:"4",
+        name:"milk",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      },
+      {
+        id:"7",
+        name:"flour",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      },
+      {
+        id:"9",
+        name:"apple juice",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      },
+      {
+        id:"10",
+        name:"butter",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      },
+      {
+        id:"12",
+        name:"broccoli",
+        createdAt: "2020-01-16T22:36:17.000Z",
+        updatedAt: "2020-01-16T22:36:17.000Z"
+      }
+    ]
+    res.render('pantry', { title: "Pantry", dummyPantryData });
   });
 
   app.get("/recipes", function (req, res) {
