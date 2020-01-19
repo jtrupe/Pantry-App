@@ -17,7 +17,12 @@
       <h2 class="text-center">My Ingredients:</h2>
       <div class="ingredient-list"></div>
       {{#each dummyPantryData}}
-      <p>{{name}}</p>
+      <div class="pantry-item">
+        <p>Item Name: {{name}}</p>
+        <p>Qty:</p>
+        <button value={{id}} class="pantry-item-remove">Remove Item</button>
+        <button value={{id}} class="pantry-item-alter">Alter Quantity</button>
+      </div>
       {{/each}}
     </div>
   </div>
