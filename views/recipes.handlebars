@@ -1,6 +1,8 @@
 <h1>{{header}}</h1>
 
-<a href="/pantry/manage" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Pantry</a>
+{{#if showNavBar}}
+{{> nav}}
+{{/if}}
 
 {{#if showSearchByName}}
 {{> searchByName}}
