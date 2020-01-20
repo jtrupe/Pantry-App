@@ -3,36 +3,26 @@
 <a href="/pantry/manage" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Pantry</a>
 
 {{#if showSearchByName}}
-  {{> searchByName}}
+{{> searchByName}}
 {{/if}}
 
 <div class="recipes">
   {{#each data}}
   <div class="recipe-item">
     <img src={{image}} alt="recipe-image">
+    <h4>{{title}}</h4>
 
-    <div class="recipes-used-ingredients">
-      <h4>{{title}}</h4>
-      <ul>
-        <h6>Items you have:</h6>
-      </ul>
-      {{#each this.usedIngredients}}
-      <li>{{name}}</li>
-      {{/each}}
-    </div>
+    {{#if this.usedIngredients}}
+    <div class="recipes-used-ingredients">{{> ingredientsUsed}}</div>
+    {{/if}}
 
-    <div class="recipes-used-ingredients">
-      <ul>
-        <h6>Items you need:</h6>
-      </ul>
-      {{#each this.missedIngredients}}
-      <li>{{name}}</li>
-      {{/each}}
-    </div>
+    {{#if this.missedIngredients}}
+    <div class="recipes-used-ingredients">{{> ingredientsUnused}}</div>
+    {{/if}}
+
   </div>
   {{/each}}
 </div>
-
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/recipes.js"></script>
