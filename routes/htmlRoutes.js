@@ -119,6 +119,7 @@ module.exports = function (app) {
     axios
     .get(url)
     .then(function (response) {
+    
 
       //capture base image url
       var baseImageUrl = response.data.baseUri;
@@ -129,7 +130,7 @@ module.exports = function (app) {
         response.data.results[ind].image= baseImageUrl + imagePath;
       })
       var data = response.data.results
-      res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearch: true , data});
+      res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearchByName: true , data});
     });
     
     app.get("/*", function (req, res) {
