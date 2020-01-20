@@ -1,7 +1,7 @@
 var db = require("../models");
 var axios = require("axios");
 
-function assembleIngredientString(data) {
+function assembleIngredientUrl(data) {
   var ingredientString = "";
   data.forEach(function (val, ind) {
     if (ind !== 0) {
@@ -11,6 +11,13 @@ function assembleIngredientString(data) {
   });
   return ingredientString
 }
+
+var renderOptions = {
+  title: "title",
+  header: "header",
+  showSearchByName: false,
+  showSearchByIngredients: false
+};
 
 // !!THIS ARRAY TO BE DELETED ONCE SQL DATABASE IS SET UP!!
 // !!USE ONLY FOR TESTING PURPOSES!!
@@ -76,7 +83,7 @@ module.exports = function (app) {
   app.get("/recipes/pantry", function (req, res) {
     var url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
-    var ingredients = assembleIngredientString(dummyPantryData)
+    var ingredients = assembleIngredientUrl(dummyPantryData)
     var numResults = "&number=" + "5";
     var instructions = "&instructionsRequired=true";
     var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
@@ -85,7 +92,9 @@ module.exports = function (app) {
       .get(url + ingredients + numResults + instructions + apiKey)
       .then(function (response) {
         var data = response.data
-        res.render('recipes', { title: "Recipes", header: "Recipes by Pantry", data });
+        renderOptions.title = "Recipes";
+        renderOptions.header = "Recipes by Pantry?";
+        res.render('recipes', { ...renderOptions, data });
       });
   });
 
@@ -130,7 +139,10 @@ module.exports = function (app) {
           response.data.results[ind].image = baseImageUrl + imagePath;
         })
         var data = response.data.results
-        res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearchByName: true, data });
+        renderOptions.title = "Recipes";
+        renderOptions.header = "Recipes searched by user";
+        renderOptions.showSearchByName = true;
+        res.render('recipes', { ...renderOptions, data });
       });
   });
 
@@ -138,8 +150,11 @@ module.exports = function (app) {
   app.get("/recipe/details/:id", function (req, res) {
     var recipeId = req.params.id;
     var url = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false&apiKey=" + process.env.SPOONACULAR_KEY;
-    axios.get(url).then(function(response){
-      res.render("recipeDetails", response)
+    axios.get(url).then(function (response) {
+      var data = response.data;
+      renderOptions.header = response.data.title;
+      renderOptions.title = response.data.title + " details";
+      res.render("recipeDetails", { ...renderOptions, data })
     })
   });
 
