@@ -107,7 +107,34 @@ module.exports = function (app) {
     }, 1000);
   });
 
-  app.get("/*", function (req, res) {
-    res.render("404")
+  // This route should display recipes that were searched by the user
+  app.get("/recipes/search/name/:recipeName?", function (req, res) {
+
+    // capture recipe name, if given.
+    var recipeName = req.params.recipeName;
+
+    // assemble api url
+    var url = "https://api.spoonacular.com/recipes/search?query=" + recipeName + "&number=2&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
+
+    axios
+    .get(url)
+    .then(function (response) {
+
+      //capture base image url
+      var baseImageUrl = response.data.baseUri;
+
+      // loop through image urls, prepending the baseImageUrl to the image path
+      response.data.results.forEach(function(val,ind){
+        var imagePath = response.data.results[ind].image
+        response.data.results[ind].image= baseImageUrl + imagePath;
+      })
+      var data = response.data.results
+      res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearch: true , data});
+    });
+    
+    app.get("/*", function (req, res) {
+      res.render("404")
+    });
   });
+
 };
