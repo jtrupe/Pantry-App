@@ -12,12 +12,15 @@ function assembleIngredientUrl(data) {
   return ingredientString
 }
 
-var renderOptions = {
-  title: "title",
-  header: "header",
-  showSearchByName: false,
-  showSearchByIngredients: false
-};
+// var renderOptions = {
+//   title: "title",
+//   header: "header",
+//   showSearchByName: false,
+//   showSearchByIngredients: false,
+//   showNavBar: false,
+//   excludeSearchByName; false,
+//   excludeSearchByPantry: false
+// };
 
 // !!THIS ARRAY TO BE DELETED ONCE SQL DATABASE IS SET UP!!
 // !!USE ONLY FOR TESTING PURPOSES!!
@@ -76,25 +79,25 @@ module.exports = function (app) {
 
   // This route should display all ingredients of the user
   app.get("/pantry/manage", function (req, res) {
-    res.render('pantry', { title: "Pantry", dummyPantryData });
+    res.render('pantry', { title: "Pantry", showNavBar: true, dummyPantryData });
   });
 
   // This route should display recipes that the user currently has in their database
   app.get("/recipes/pantry", function (req, res) {
-    var url =
-      "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
-    var ingredients = assembleIngredientUrl(dummyPantryData)
-    var numResults = "&number=" + "5";
-    var instructions = "&instructionsRequired=true";
-    var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
-
+    var url ="https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+    var ingredients = assembleIngredientUrl(dummyPantryData);
+    var url2 = "&number=5&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
     axios
-      .get(url + ingredients + numResults + instructions + apiKey)
-      .then(function (response) {
+    .get(url + ingredients + url2)
+    .then(function (response) {
         var data = response.data
-        renderOptions.title = "Recipes";
-        renderOptions.header = "Recipes by Pantry?";
-        res.render('recipes', { ...renderOptions, data });
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes by Pantry?",
+          showNavBar: true,
+          excludeSearchByPantry: "true",
+          data
+        });
       });
   });
 
@@ -118,31 +121,28 @@ module.exports = function (app) {
 
   // This route should display recipes that were searched by the user
   app.get("/recipes/search/name/:recipeName?", function (req, res) {
-
-    // capture recipe name, if given.
     var recipeName = req.params.recipeName;
-
-    // assemble api url
     var url = "https://api.spoonacular.com/recipes/search?query=" + recipeName + "&number=2&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
-
     axios
       .get(url)
       .then(function (response) {
 
-
-        //capture base image url
+        // Prepend baseUrl to image url.
         var baseImageUrl = response.data.baseUri;
-
-        // loop through image urls, prepending the baseImageUrl to the image path
         response.data.results.forEach(function (val, ind) {
           var imagePath = response.data.results[ind].image
           response.data.results[ind].image = baseImageUrl + imagePath;
         })
-        var data = response.data.results
-        renderOptions.title = "Recipes";
-        renderOptions.header = "Recipes searched by user";
-        renderOptions.showSearchByName = true;
-        res.render('recipes', { ...renderOptions, data });
+
+        var data = response.data.results;
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes searched by user",
+          showNavBar: true,
+          showSearchByName: true,
+          excludeSearchByName: true,
+          data
+        });
       });
   });
 
@@ -152,9 +152,11 @@ module.exports = function (app) {
     var url = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false&apiKey=" + process.env.SPOONACULAR_KEY;
     axios.get(url).then(function (response) {
       var data = response.data;
-      renderOptions.header = response.data.title;
-      renderOptions.title = response.data.title + " details";
-      res.render("recipeDetails", { ...renderOptions, data })
+      res.render("recipeDetails", {
+        title: data.title,
+        header: data.title + " recipe details",
+        data
+      })
     })
   });
 
