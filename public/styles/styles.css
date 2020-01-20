@@ -1,3 +1,54 @@
 .list-group-item {
   line-height: 2.5;
 }
+h4{
+  font-family: 'Oleo Script', cursive;
+}
+h1, h2, h3{
+  font-family: 'Oleo Script', cursive;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.log-in{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.jumbotron{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  margin: 20px;
+  background-image: url('/styles/images/ingredients.webp');
+  background-size: cover;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.myIngredients{
+  width: 345px;
+  height: 420px;
+  overflow: auto;
+}
+
+.container{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+}
+
+.myIngredients{
+
+}
