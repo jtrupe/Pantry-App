@@ -66,29 +66,29 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     res.redirect("/login")
   });
-  
+
   // This route should display all ingredients of the user
   app.get("/pantry/manage", function (req, res) {
     res.render('pantry', { title: "Pantry", dummyPantryData });
   });
-  
+
   // This route should display recipes that the user currently has in their database
   app.get("/recipes/pantry", function (req, res) {
     var url =
-    "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+      "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
     var ingredients = assembleIngredientString(dummyPantryData)
     var numResults = "&number=" + "5";
     var instructions = "&instructionsRequired=true";
     var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
-    
+
     axios
-    .get(url + ingredients + numResults + instructions + apiKey)
-    .then(function (response) {
-      var data = response.data
-      res.render('recipes', { title: "Recipes", header: "Recipes by Pantry", data });
-    });
+      .get(url + ingredients + numResults + instructions + apiKey)
+      .then(function (response) {
+        var data = response.data
+        res.render('recipes', { title: "Recipes", header: "Recipes by Pantry", data });
+      });
   });
-  
+
   // this route should update the quantity of an ingredient item in the database
   app.put("/pantry/ingredient/update", function (req, res) {
     var itemId = req.body.ingredientId;
@@ -97,7 +97,7 @@ module.exports = function (app) {
       res.send({ redirect: "/pantry/manage" });
     }, 1000);
   });
-  
+
   // this route should remove an ingredient item in the database
   app.delete("/pantry/ingredient/remove", function (req, res) {
     var itemId = req.body.ingredientId;
@@ -117,25 +117,33 @@ module.exports = function (app) {
     var url = "https://api.spoonacular.com/recipes/search?query=" + recipeName + "&number=2&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
 
     axios
-    .get(url)
-    .then(function (response) {
-    
+      .get(url)
+      .then(function (response) {
 
-      //capture base image url
-      var baseImageUrl = response.data.baseUri;
 
-      // loop through image urls, prepending the baseImageUrl to the image path
-      response.data.results.forEach(function(val,ind){
-        var imagePath = response.data.results[ind].image
-        response.data.results[ind].image= baseImageUrl + imagePath;
-      })
-      var data = response.data.results
-      res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearchByName: true , data});
-    });
-    
-    app.get("/*", function (req, res) {
-      res.render("404")
-    });
+        //capture base image url
+        var baseImageUrl = response.data.baseUri;
+
+        // loop through image urls, prepending the baseImageUrl to the image path
+        response.data.results.forEach(function (val, ind) {
+          var imagePath = response.data.results[ind].image
+          response.data.results[ind].image = baseImageUrl + imagePath;
+        })
+        var data = response.data.results
+        res.render('recipes', { title: "Recipes", header: "Recipes searched by user", showSearchByName: true, data });
+      });
   });
 
+  // this route displays all details of a recipe
+  app.get("/recipe/details/:id", function (req, res) {
+    var recipeId = req.params.id;
+    var url = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false&apiKey=" + process.env.SPOONACULAR_KEY;
+    axios.get(url).then(function(response){
+      res.render("recipeDetails", response)
+    })
+  });
+
+  app.get("/*", function (req, res) {
+    res.render("404")
+  });
 };
