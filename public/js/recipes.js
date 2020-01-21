@@ -34,7 +34,5 @@ $("#search-recipe-ingredients").click(function() {
   $(".ingredient-item").each(function(index, element) {
     ingredientsArr.push(element.value);
   });
-
-  console.log(ingredientsArr.join());
-  // window.location = "/recipes/search/name/" + recipeName;
+  window.location = "/recipes/search/ingredients/" + ingredientsArr.join();
 });
