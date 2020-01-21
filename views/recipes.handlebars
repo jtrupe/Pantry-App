@@ -8,6 +8,10 @@
 {{> searchByName}}
 {{/if}}
 
+{{#if showSearchByIngredient}}
+{{> searchByIngredients}}
+{{/if}}
+
 <div class="recipes">
   {{#each data}}
   <div class="recipe-item" data-recipe-id={{this.id}}>
