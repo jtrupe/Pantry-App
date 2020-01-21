@@ -88,8 +88,8 @@ module.exports = function (app) {
     var ingredients = assembleIngredientUrl(dummyPantryData);
     var url2 = "&number=5&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
     axios
-    .get(url + ingredients + url2)
-    .then(function (response) {
+      .get(url + ingredients + url2)
+      .then(function (response) {
         var data = response.data
         res.render('recipes', {
           title: "Recipes",
@@ -158,6 +158,26 @@ module.exports = function (app) {
         data
       })
     })
+  });
+
+  // This route should display recipes that were searched by ingredients
+  app.get("/recipes/search/ingredients/:ingredients?", function (req, res) {
+    var ingredients = req.params.ingredients;
+    var url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+    var url2 = "&number=5&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
+    axios
+      .get(url + ingredients + url2)
+      .then(function (response) {
+        var data = response.data
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes searched by ingredient",
+          showNavBar: true,
+          showSearchByIngredient: true,
+          excludeSearchByIngredients: true,
+          data
+        });
+      });
   });
 
   app.get("/*", function (req, res) {
