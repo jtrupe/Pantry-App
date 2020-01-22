@@ -1,38 +1,52 @@
-<div class="container">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4 text-center">Pantry</h1>
-      <p class="lead text-center">Add the ingredients you have on hand</p>
-    </div>
+<div class="container" style="background-image: url('/styles/images/background.jpg');">
+  <br>
+  <div class="title">
+    <br>
+
+    <h1 class="display-4 text-center">Pantry</h1>
+    <h2 class="text-center">Add the ingredients you have on hand</h2>
+    <br>
+
   </div>
 
   {{#if showNavBar}}
   {{> nav}}
   {{/if}}
   
+  <br>
   <div class="row">
-    <div class="col-sm-6">
-      <h2>Add Ingredients</h2>
+
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4 add">
+      <br>
+      <h2 class="text-center">Add Ingredients</h2>
       <input type="text" id="ingredient-search" class="form-control" placeholder="start typing to find your ingredient">
       <div class="returned-search-items"></div>
+
+      <br>
+      <br>
     </div>
-
-
-    <div class="col-sm-6">
-      <h2 class="text-center">My Ingredients:</h2>
+    <div class="col-sm-2"></div>
+    <div class=" col-sm-4 myIngredients">
+      <br>
+      <h2 class="text-center"><u>My Ingredients:</u></h2>
       <div class="ingredient-list"></div>
       {{#each dummyPantryData}}
       <div class="pantry-item">
-        <p>Item Name: {{name}}</p>
-        <p>Qty:</p>
+        <p><strong>Item Name: {{name}}</strong></p>
+        <p><strong>Qty:</strong></p>
         <button value={{id}} class="pantry-item-remove">Remove Item</button>
         <button value={{id}} class="pantry-item-alter">Alter Quantity</button>
         <hr>
       </div>
       {{/each}}
     </div>
+    <div class="col-sm-1"></div>
   </div>
+
 </div>
+</div>
+<br>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/pantry.js"></script>
