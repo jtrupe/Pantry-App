@@ -17,10 +17,5 @@ USE recipesDB;
 -- food_name VARCHAR(100) NOT NULL,
 -- PRIMARY KEY (id)
 -- );
-
--- CREATE TABLE userPantry (
---     id INT NOT NULL AUTO_INCREMENT,
---     food_arr ARRAY,
---     amounts ARRAY
--- );
+;
 
