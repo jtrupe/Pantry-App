@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
+  var Ingredient = sequelize.define("Ingredient", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -7,17 +7,13 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    password: {
-      type: DataTypes.STRING,
+    measure:{
+      type :  DataTypes.SRING,
       allowNull: false,
       validate: {
         len: [1]
       }
-    },
-    userPantry: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: [1]
     }
   });
-  return User;
+  return Ingredient;
 };
