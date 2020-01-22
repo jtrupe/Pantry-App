@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": "sqlPassword",
+    "password": "root",
     "database": "recipesDB",
     "host": "localhost",
     "dialect": "mysql",
