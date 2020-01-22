@@ -1,12 +1,41 @@
-<div class="container" style="background-image: url('/styles/images/background.jpg');">
-    <br>
-    <div class="title">
-        <br>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">Pantry</h1>
+      <p class="lead text-center">Add the ingredients you have on hand</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Add Ingredients</h2>
+      <input type="text" id="ingredient-search" class="form-control" placeholder="start typing to find your ingredient">
+      <div class="returned-search-items"></div>
 
-        <h1 class="display-4 text-center">Pantry</h1>
-        <h2 class="text-center">Add the ingredients you have on hand</h2>
-        <br>
+      {{!-- needs routing for /api/pantry/new--}}
+      <h3>Please choose a Unit of Measure for your new Pantry Item:</h3>
+      <!-- Group of default radios - option 1 -->
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" id="mLRadio" name="radioGroup" value="mL">
+        <label class="custom-control-label" for="mLRadio">mL (volume)</label>
+      </div>
 
+      <!-- Group of default radios - option 2 -->
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" id="gRadio" name="radioGroup" value="g">
+        <label class="custom-control-label" for="gRadio">g (weight)</label>
+      </div>
+
+
+      <!-- Group of default radios - option 3 -->
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" id="itemRadio" name="radioGroup" value="Item(s)">
+        <label class="custom-control-label" for="itemRadio">Single Item</label>
+      </div>
+
+      <div class="quantityDiv">
+        <h3>Please enter the quantity you would like to add to your pantry:</h3>
+        <input type="number" id="itemQuantity"></input>
+      </div>
     </div>
     <br>
     <div class="row">
@@ -41,8 +70,6 @@
     </div>
 
 </div>
-</div>
-<br>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/pantry.js"></script>
