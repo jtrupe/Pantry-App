@@ -13,10 +13,6 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-    userPantry: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: [1]
     }
   });
   return User;
