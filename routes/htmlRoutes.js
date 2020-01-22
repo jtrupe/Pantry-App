@@ -1,7 +1,7 @@
 var db = require("../models");
 var axios = require("axios");
 
-function assembleIngredientString(data) {
+function assembleIngredientUrl(data) {
   var ingredientString = "";
   data.forEach(function (val, ind) {
     if (ind !== 0) {
@@ -11,6 +11,16 @@ function assembleIngredientString(data) {
   });
   return ingredientString
 }
+
+// var renderOptions = {
+//   title: "title",
+//   header: "header",
+//   showSearchByName: false,
+//   showSearchByIngredients: false,
+//   showNavBar: false,
+//   excludeSearchByName; false,
+//   excludeSearchByPantry: false
+// };
 
 // !!THIS ARRAY TO BE DELETED ONCE SQL DATABASE IS SET UP!!
 // !!USE ONLY FOR TESTING PURPOSES!!
@@ -69,23 +79,25 @@ module.exports = function (app) {
 
   // This route should display all ingredients of the user
   app.get("/pantry/manage", function (req, res) {
-    res.render('pantry', { title: "Pantry", dummyPantryData });
+    res.render('pantry', { title: "Pantry", showNavBar: true, dummyPantryData });
   });
 
   // This route should display recipes that the user currently has in their database
   app.get("/recipes/pantry", function (req, res) {
-    var url =
-      "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
-    var ingredients = assembleIngredientString(dummyPantryData)
-    var numResults = "&number=" + "5";
-    var instructions = "&instructionsRequired=true";
-    var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
-
+    var url ="https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+    var ingredients = assembleIngredientUrl(dummyPantryData);
+    var url2 = "&number=5&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
     axios
-      .get(url + ingredients + numResults + instructions + apiKey)
+      .get(url + ingredients + url2)
       .then(function (response) {
         var data = response.data
-        res.render('recipes', { title: "Recipes", header: "Recipes by Pantry", data });
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes by Pantry?",
+          showNavBar: true,
+          excludeSearchByPantry: "true",
+          data
+        });
       });
   });
 
@@ -105,6 +117,67 @@ module.exports = function (app) {
     setTimeout(function () {
       res.send({ redirect: "/pantry/manage" });
     }, 1000);
+  });
+
+  // This route should display recipes that were searched by the user
+  app.get("/recipes/search/name/:recipeName?", function (req, res) {
+    var recipeName = req.params.recipeName;
+    var url = "https://api.spoonacular.com/recipes/search?query=" + recipeName + "&number=2&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
+    axios
+      .get(url)
+      .then(function (response) {
+
+        // Prepend baseUrl to image url.
+        var baseImageUrl = response.data.baseUri;
+        response.data.results.forEach(function (val, ind) {
+          var imagePath = response.data.results[ind].image
+          response.data.results[ind].image = baseImageUrl + imagePath;
+        })
+
+        var data = response.data.results;
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes searched by user",
+          showNavBar: true,
+          showSearchByName: true,
+          excludeSearchByName: true,
+          data
+        });
+      });
+  });
+
+  // this route displays all details of a recipe
+  app.get("/recipe/details/:id", function (req, res) {
+    var recipeId = req.params.id;
+    var url = "https://api.spoonacular.com/recipes/" + recipeId + "/information?includeNutrition=false&apiKey=" + process.env.SPOONACULAR_KEY;
+    axios.get(url).then(function (response) {
+      var data = response.data;
+      res.render("recipeDetails", {
+        title: data.title,
+        header: data.title + " recipe details",
+        data
+      })
+    })
+  });
+
+  // This route should display recipes that were searched by ingredients
+  app.get("/recipes/search/ingredients/:ingredients?", function (req, res) {
+    var ingredients = req.params.ingredients;
+    var url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+    var url2 = "&number=5&instructionsRequired=true&apiKey=" + process.env.SPOONACULAR_KEY;
+    axios
+      .get(url + ingredients + url2)
+      .then(function (response) {
+        var data = response.data
+        res.render('recipes', {
+          title: "Recipes",
+          header: "Recipes searched by ingredient",
+          showNavBar: true,
+          showSearchByIngredient: true,
+          excludeSearchByIngredients: true,
+          data
+        });
+      });
   });
 
   app.get("/*", function (req, res) {
