@@ -1,3 +1,70 @@
 .list-group-item {
   line-height: 2.5;
 }
+h4{
+  font-family: 'Oleo Script', cursive;
+}
+h1, h2, h3{
+  font-family: 'Oleo Script', cursive;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.log-in{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.title{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  margin: 20px;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+}
+
+.myIngredients{
+  border-width: 4px;
+  border-style: solid;
+  margin-bottom: 20px;
+  border-color: black;
+  border-radius: 12px;
+  width: 345px;
+  height: 420px;
+  overflow: auto;
+}
+
+.container{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+}
+img{
+  margin-bottom: 16px;
+}
+
+p{
+  font-size: 18px;
+}
+
+.add{
+  border-width: 4px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px;
+  width: 345px;
+  height: 420px;
+  overflow: auto;
+}
