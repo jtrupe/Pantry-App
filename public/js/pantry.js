@@ -21,7 +21,6 @@ $("#ingredient-search").keyup(function() {
   }
 
   clearTimeout(ingredientSearchTimeout);
-
   var itemToSearch = $("#ingredient-search")
     .val()
     .trim();
