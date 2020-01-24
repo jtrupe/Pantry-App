@@ -89,10 +89,7 @@ module.exports = function(app) {
   app.get("/recipes/pantry", function(req, res) {
     var url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
-<<<<<<< HEAD
-=======
 
->>>>>>> 1feec9794a63482f75adbbf8e599ca1d2a36ca7a
     var ingredients = assembleIngredientUrl(dummyPantryData);
     var url2 =
       "&number=5&instructionsRequired=true&apiKey=" +
@@ -105,10 +102,6 @@ module.exports = function(app) {
         showNavBar: true,
         excludeSearchByPantry: "true",
         data: data
-<<<<<<< HEAD
-=======
-
->>>>>>> 1feec9794a63482f75adbbf8e599ca1d2a36ca7a
       });
     });
   });
