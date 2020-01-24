@@ -89,6 +89,7 @@ module.exports = function(app) {
   app.get("/recipes/pantry", function(req, res) {
     var url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+
     var ingredients = assembleIngredientUrl(dummyPantryData);
     var url2 =
       "&number=5&instructionsRequired=true&apiKey=" +
