@@ -1,0 +1,27 @@
+<h1>{{header}}</h1>
+
+<div class="instruction-div">
+  <h3>{{data.title}}</h3>
+  <img src={{data.image}} alt="recipe image">
+
+  <div class="instruction-ingredients">
+    <h4>Ingredients:</h4>
+    {{#each data.extendedIngredients}}
+    <div class="instruction-ingredient-item">
+      <p>Name: {{name}}</p>
+      <p>Quantity: {{amount}}{{unit}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="instruction-steps">
+    <h4>Instructions:</h4>
+    {{#each data.analyzedInstructions.[0].steps}}
+    <p>{{number}}. {{step}}</p>
+    {{/each}}
+  </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/recipes.js"></script>
