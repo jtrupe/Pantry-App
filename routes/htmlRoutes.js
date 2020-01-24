@@ -79,7 +79,7 @@ module.exports = function (app) {
     var ingredients = assembleIngredientString(dummyPantryData)
     var numResults = "&number=" + "5";
     var instructions = "&instructionsRequired=true";
-    var apiKey = "&apiKey=" + process.env.SPOONACULAR_KEY;
+    var apiKey = "&apiKey=" + "f37d8b1eedf5427c995c7dcaa68bc46e";
 
     axios
       .get(url + ingredients + numResults + instructions + apiKey)
