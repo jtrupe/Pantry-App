@@ -12,13 +12,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
+const hbs = {
+  defaultLayout: "main",
+  helpers: {
+    beginRow: function(conditional, options) {
+      if (conditional % 2 === 0) {
+        console.log(options.data.last);
+        return options.fn(this);
+      }
+    },
+    endRow: function(conditional, options) {
+      if (conditional % 2 !== 0 || options.data.last === true) {
+        return options.fn(this);
+      }
+    }
+  }
+};
+
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine("handlebars", exphbs(hbs));
+
 app.set("view engine", "handlebars");
 
 // Routes

@@ -1,16 +1,18 @@
-<div class="container" style="background-image: url('/styles/images/background.jpg');">
+<div class="container">
 
-  <div class="title">
-    <br>
+  <div class="title mb-0">
+    {{!-- <br> --}}
 
     <h1 class="display-4 text-center">{{header}}</h1>
     <h2 class="text-center">Make a meal with the ingedients in your pantry</h2>
-    <br>
+    {{!-- <br> --}}
 
   </div>
 
   {{#if showNavBar}}
-  {{> nav}}
+  <div class="text-center mt-0">
+    {{> nav}}
+  </div>
   {{/if}}
 
   {{#if showSearchByName}}
@@ -21,24 +23,33 @@
   {{> searchByIngredients}}
   {{/if}}
 
-
-  <div class="row recipes">
+  <div class="pt-4">
     {{#each data}}
-    <div class="recipe-item" data-recipe-id={{this.id}}>
-      <img src={{image}} alt="recipe-image">
-      <h4>{{title}}</h4>
+    {{#beginRow @index}}
+    <div class="row">
+      {{/beginRow}}
+      <div class="col-sm-12 col-md-6">
+        <div class="recipe-item recipes" data-recipe-id={{this.id}}>
+          <h3 class="text-center">{{this.title}}</h3>
+          <img src={{image}} alt="recipe-image">
+          <div class="row pt-3 pb-5">
 
-      {{#if this.usedIngredients}}
-      <div class="recipes-used-ingredients">{{> ingredientsUsed}}</div>
-      {{/if}}
-
-      {{#if this.missedIngredients}}
-      <div class="recipes-used-ingredients">{{> ingredientsUnused}}</div>
-      {{/if}}
-
+            {{#if this.usedIngredients}}
+            <div class="recipes-used-ingredients col-6">{{> ingredientsUsed}}</div>
+            {{/if}}
+            {{#if this.missedIngredients}}
+            <div class="recipes-used-ingredients col-6">{{> ingredientsUnused}}</div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{#endRow @index}}
     </div>
+    <hr>
+    {{/endRow}}
     {{/each}}
   </div>
 </div>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/recipes.js"></script>
