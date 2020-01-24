@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 $("#user-create").click(function() {
   var newUserName = $("#username-create").val().trim();
-
+  $("#username-create").val("");
   // this ensures an empty username cannot be submitted.
   if (newUserName.length === 0) {
     return;
@@ -15,9 +15,11 @@ $("#user-create").click(function() {
       name: newUserName,
       password: "newPassword"
     }
-  }).done(function(res) {
+  }).then(function(res) {
     userId = res;
-
+    window.sessionStorage.setItem("loggedInUser", userId)
+    console.log(res);
+    // console.log(this.id)
     // redirect browser to returned route.
     window.location = "/pantry/manage";
   });
@@ -26,5 +28,6 @@ $("#user-create").click(function() {
 $("#user-select").change(function() {
   userId = this.value;
   console.log(userId);
+  window.sessionStorage.setItem("loggedInUser", userId)
   window.location = "/recipes/pantry";
 });
