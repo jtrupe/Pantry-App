@@ -1,0 +1,31 @@
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <a href="/pantry/manage" class="btn btn-secondary" role="button" aria-pressed="true">Pantry</a>
+
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Search Recipe By
+    </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+        {{#if excludeSearchByName}}
+          <a class="dropdown-item disabled" href="#">Name</a>
+        {{else}}
+          <a class="dropdown-item" href="/recipes/search/name">Name</a>
+
+        {{/if}}
+        {{#if excludeSearchByIngredients}}
+          <a class="dropdown-item disabled" href="#">Ingredients</a>
+        {{else}}
+          <a class="dropdown-item" href="/recipes/search/ingredients">Ingredients</a>
+        {{/if}}
+
+        {{#if excludeSearchByPantry}}
+          <a class="dropdown-item disabled" href="#">Your Ingredients</a>
+        {{else}}
+          <a class="dropdown-item" href="/recipes/pantry">Your Ingredients</a>
+        {{/if}}
+
+      </div>
+  </div>
+</div>
