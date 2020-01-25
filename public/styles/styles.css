@@ -48,18 +48,18 @@ h1, h2, h3{
 }
 
 .container{
-  /* border-width: 4px; */
-  /* border-style: solid; */
-  /* border-color: black; */
-  /* border-radius: 12px; */
-  /* background-color: antiquewhite; */
+  /* border-width: 4px; 
+  border-style: solid;
+  border-color: black;
+  border-radius: 12px; */
+  /* background-color: antiquewhite;
   background-color: rgba(250, 235, 215, .4);
-    box-shadow: 0 0 20px 10px rgba(250, 235, 215, .1);
-    /* padding: -10px; */
+  box-shadow: 0 0 20px 10px rgba(250, 235, 215, .1);
+  padding: -10px; */
 }
-/* img{
-  margin-bottom: 16px;
-} */
+.icon{
+  margin-bottom: 38px;
+}
 
 /* p{
   font-size: 18px;

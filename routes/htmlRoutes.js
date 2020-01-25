@@ -3,7 +3,7 @@ var axios = require("axios");
 
 function assembleIngredientUrl(data) {
   var ingredientString = "";
-  data.forEach(function(val, ind) {
+  data.forEach(function (val, ind) {
     if (ind !== 0) {
       ingredientString += ",";
     }
@@ -63,21 +63,21 @@ var dummyPantryData = [
   }
 ];
 
-module.exports = function(app) {
+module.exports = function (app) {
   // This is the route to log in the user.
-  app.get("/login", function(req, res) {
-    db.User.findAll({}).then(function(dbUsers) {
+  app.get("/login", function (req, res) {
+    db.User.findAll({}).then(function (dbUsers) {
       res.render("index", { title: "Login", data: dbUsers });
     });
   });
 
   // Redirect '/' route to '/login'
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     res.redirect("/login");
   });
 
   // This route should display all ingredients of the user
-  app.get("/pantry/manage", function(req, res) {
+  app.get("/pantry/manage", function (req, res) {
     res.render("pantry", {
       title: "Pantry",
       showNavBar: true,
@@ -86,7 +86,7 @@ module.exports = function(app) {
   });
 
   // This route should display recipes that the user currently has in their database
-  app.get("/recipes/pantry", function(req, res) {
+  app.get("/recipes/pantry", function (req, res) {
     var url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
 
@@ -94,11 +94,11 @@ module.exports = function(app) {
     var url2 =
       "&number=5&instructionsRequired=true&apiKey=" +
       process.env.SPOONACULAR_KEY;
-    axios.get(url + ingredients + url2).then(function(response) {
+    axios.get(url + ingredients + url2).then(function (response) {
       var data = response.data;
       res.render("recipes", {
         title: "Recipes",
-        header: "Recipes by Pantry?",
+        header: "Recipes by Pantry",
         showNavBar: true,
         excludeSearchByPantry: "true",
         data: data
@@ -107,35 +107,35 @@ module.exports = function(app) {
   });
 
   // this route should update the quantity of an ingredient item in the database
-  app.put("/pantry/ingredient/update", function(req, res) {
+  app.put("/pantry/ingredient/update", function (req, res) {
     var itemId = req.body.ingredientId;
     console.log("Updating quantity of itemId: " + itemId);
-    setTimeout(function() {
+    setTimeout(function () {
       res.send({ redirect: "/pantry/manage" });
     }, 1000);
   });
 
   // this route should remove an ingredient item in the database
-  app.delete("/pantry/ingredient/remove", function(req, res) {
+  app.delete("/pantry/ingredient/remove", function (req, res) {
     var itemId = req.body.ingredientId;
     console.log("Removing itemId: " + itemId);
-    setTimeout(function() {
+    setTimeout(function () {
       res.send({ redirect: "/pantry/manage" });
     }, 1000);
   });
 
   // This route should display recipes that were searched by the user
-  app.get("/recipes/search/name/:recipeName?", function(req, res) {
+  app.get("/recipes/search/name/:recipeName?", function (req, res) {
     var recipeName = req.params.recipeName;
     var url =
       "https://api.spoonacular.com/recipes/search?query=" +
       recipeName +
       "&number=2&instructionsRequired=true&apiKey=" +
       process.env.SPOONACULAR_KEY;
-    axios.get(url).then(function(response) {
+    axios.get(url).then(function (response) {
       // Prepend baseUrl to image url.
       var baseImageUrl = response.data.baseUri;
-      response.data.results.forEach(function(val, ind) {
+      response.data.results.forEach(function (val, ind) {
         var imagePath = response.data.results[ind].image;
         response.data.results[ind].image = baseImageUrl + imagePath;
       });
@@ -143,7 +143,7 @@ module.exports = function(app) {
       var data = response.data.results;
       res.render("recipes", {
         title: "Recipes",
-        header: "Recipes searched by user",
+        header: "Search for a recipe",
         showNavBar: true,
         showSearchByName: true,
         excludeSearchByName: true,
@@ -153,14 +153,14 @@ module.exports = function(app) {
   });
 
   // this route displays all details of a recipe
-  app.get("/recipe/details/:id", function(req, res) {
+  app.get("/recipe/details/:id", function (req, res) {
     var recipeId = req.params.id;
     var url =
       "https://api.spoonacular.com/recipes/" +
       recipeId +
       "/information?includeNutrition=false&apiKey=" +
       process.env.SPOONACULAR_KEY;
-    axios.get(url).then(function(response) {
+    axios.get(url).then(function (response) {
       var data = response.data;
       res.render("recipeDetails", {
         title: data.title,
@@ -171,14 +171,14 @@ module.exports = function(app) {
   });
 
   // This route should display recipes that were searched by ingredients
-  app.get("/recipes/search/ingredients/:ingredients?", function(req, res) {
+  app.get("/recipes/search/ingredients/:ingredients?", function (req, res) {
     var ingredients = req.params.ingredients;
     var url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
     var url2 =
       "&number=5&instructionsRequired=true&apiKey=" +
       process.env.SPOONACULAR_KEY;
-    axios.get(url + ingredients + url2).then(function(response) {
+    axios.get(url + ingredients + url2).then(function (response) {
       var data = response.data;
       res.render("recipes", {
         title: "Recipes",
@@ -191,7 +191,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/*", function(req, res) {
+  app.get("/*", function (req, res) {
     res.render("404");
   });
 };
