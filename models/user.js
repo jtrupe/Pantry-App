@@ -13,7 +13,14 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
+    },
+    pantryKey: {
+      type: DataTypes.STRING(100).BINARY,
+      defaultValue: ""
     }
+  },{
+    tableName: "Users",
+    timestamps: false
   });
   return User;
 };
