@@ -98,7 +98,7 @@ module.exports = function(app) {
       var data = response.data;
       res.render("recipes", {
         title: "Recipes",
-        header: "Recipes by Pantry?",
+        header: "Recipes by Pantry",
         showNavBar: true,
         excludeSearchByPantry: "true",
         data: data
@@ -143,7 +143,7 @@ module.exports = function(app) {
       var data = response.data.results;
       res.render("recipes", {
         title: "Recipes",
-        header: "Recipes searched by user",
+        header: "Search for a recipe",
         showNavBar: true,
         showSearchByName: true,
         excludeSearchByName: true,
