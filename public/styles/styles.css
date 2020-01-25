@@ -35,22 +35,16 @@ h1, h2, h3{
   border-color: black;
   border-radius: 12px;
   margin: 20px;
-  text-shadow:
-  -1px -1px 0 rgb(255, 255, 255),
-  1px -1px 0 rgb(255, 255, 255),
-  -1px 1px 0 rgb(255, 255, 255),
-  1px 1px 0 rgb(255, 255, 255);
 }
 
-.myIngredients, .recipes{
-  /* border-width: 4px; */
-  /* border-style: solid; */
-  /* margin-bottom: 20px; */
-  /* border-color: black; */
-  /* border-radius: 12px; */
-  /* width: 345px; */
-  /* height: 420px; */
-  /* overflow: auto; */
+.myIngredients{
+  border-width: 4px; 
+  border-style: solid;
+  margin-bottom: 20px;
+  border-color: black; 
+  border-radius: 12px; 
+  height: 420px;
+  overflow: auto;
 }
 
 .container{
@@ -92,7 +86,7 @@ h1, h2, h3{
   min-width: 25%; */
 /* } */
 
-img{
+.recipeImg{
   box-shadow: 5px 10px 18px #888888;
   border: black 2px solid;
   border-radius: 10px;
