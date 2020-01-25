@@ -25,7 +25,7 @@ module.exports = function (app) {
       db.User.update({
         pantryKey: initialPantryKey
       }, {
-        where: {pantryKey: ""}
+        where: { pantryKey: "" }
       }).done();
     })
   });
