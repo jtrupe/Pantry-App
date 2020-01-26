@@ -1,24 +1,24 @@
-<div class="container">
+<div class="container mb-5">
   {{> nav}}
   <div class="title mb-0 py-3">
     <h1 class="display-4 text-center m-2">Recipe Details</h1>
     <h2 class="text-center">Make a meal</h2>
   </div>
-
-
   <div class="row">
     <div class="col-12">
-
-
       <div class="instruction-div border-box border-thin">
         <h1 class="text-center mt-4 mb-3">{{data.title}}</h1>
         <div class="row">
-          <img class="recipe-image-details border-box border-thin mx-auto" src={{data.image}} alt="recipe image">
+          <img class="border-box border-thin mx-auto" src={{data.image}} alt="recipe image">
         </div>
 
         <hr>
-        <div class="instruction-ingredients mt-4">
+        
+        {{!-- Instructions --}}
+        <div class="instruction-ingredients mt-4 mb-5">
           <h2 class="text-center">Ingredients:</h2>
+
+          {{!-- Table containing all ingredients --}}
           <table class="w-50 text-center mx-auto">
             <tr>
               <th>Name</th>
@@ -32,9 +32,9 @@
             {{/each}}
           </table>
         </div>
-        <br>
+        {{!-- <br> --}}
         <hr>
-        <br>
+        {{!-- <br> --}}
         <div class="instruction-steps p-4">
           <h2 class="text-center">Instruction Steps:</h2>
           {{#each data.analyzedInstructions.[0].steps}}
@@ -45,4 +45,6 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/recipes.js"></script>

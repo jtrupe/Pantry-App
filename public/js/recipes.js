@@ -7,7 +7,7 @@ function searchRecipeByName() {
 
   // alter window location
   window.location = "/recipes/search/name/" + recipeName;
-};
+}
 
 // event listener for search button on search recipe by name page.
 $("#search-recipe-name").click(searchRecipeByName);

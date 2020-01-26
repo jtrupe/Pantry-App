@@ -1,3 +1,9 @@
+button,a:not(.dropdown-item){
+  background-color: #eddac7 !important;
+  font-weight: 700 !important;
+  box-shadow: 5px 10px 18px rgb(0,0,0,.5);
+}
+
 body{
   background-image: url("./images/background.jpg");
   background-repeat: no-repeat;
@@ -18,47 +24,49 @@ h1, h2, h3{
   1px 1px 0 rgb(255, 255, 255);
 }
 
+input,
+select{
+  box-shadow: 5px 10px 18px rgba(0,0,0,.5);
+}
+
+tr {
+  border-bottom: 1px solid rgb(174,157,143);
+}
+
 .border-box{
   border: black solid 4px;
   border-radius: 12px;
   box-shadow: 5px 10px 18px rgb(0,0,0,.5);
 }
 
-.border-thick{
-  border-width: 4px;
-}
-
 .border-thin{
-  border-width: 2px;
+  border-width: 1px;
 }
 
-.log-in{
-  padding: 10px;
+.font-weight{
+  font-weight: 700;
 }
 
+.instruction-div{
+  background-color: #eddac762;
+}
+
+.instruction-step-count{
+  font-family: 'Oleo Script', cursive;
+  text-shadow:
+  -1px -1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255);
+  font-size: 2rem;
+}
 
 .myIngredients{
   border-left: black solid 1px;
-  /* border-width: 4px; 
-  border-style: solid;
-  margin-bottom: 20px;
-  border-color: black; 
-  border-radius: 12px; 
-  height: 420px;
-  overflow: auto; */
 }
-
-.icon{
-  margin-bottom: 38px;
-}
-
 
 .recipeImg{
   width: 400px;
-}
-
-.recipe-image-details{
-  /* width: 700px; */
 }
 
 .recipeImg:hover{
@@ -77,44 +85,6 @@ h1, h2, h3{
 .ingredient-item-div{
   margin: auto;
   max-width: 300px;
-}
-
-button,a:not(.dropdown-item){
-  background-color: #eddac7 !important;
-  font-weight: 700 !important;
-  box-shadow: 5px 10px 18px rgb(0,0,0,.5);
-}
-
-.font-weight{
-  font-weight: 700;
-}
-
-input{
-  box-shadow: 5px 10px 18px rgba(0,0,0,.5);
-}
-
-.test{
-  /* display: inline-block; */
-}
-
-tr {
-  border-bottom: 1px solid rgb(174,157,143);
-  /* border-bottom: rgba(0, 0, 0,.6); */
-  /* background-image: linear-gradient(to right, rgba(237, 218, 199,0),rgba(237, 218, 199,8),rgba(237, 218, 199,0)) */
-}
-
-.instruction-div{
-  background-color: #eddac762;
-}
-
-.instruction-step-count{
-  font-family: 'Oleo Script', cursive;
-  text-shadow:
-  -1px -1px 0 rgb(255, 255, 255),
-  1px -1px 0 rgb(255, 255, 255),
-  -1px 1px 0 rgb(255, 255, 255),
-  1px 1px 0 rgb(255, 255, 255);
-  font-size: 2rem;
 }
 
 @media only screen and (min-width: 575px) {
