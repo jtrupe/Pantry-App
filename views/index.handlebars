@@ -15,30 +15,36 @@
       <img class="icon img-fluid" src="/styles/images/grill.png">
     </div>
     <div class="col-sm-4 log-in">
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">
-          <h3>Select User</h3>
-        </label>
-        <select class="form-control" id="user-select">
-          <option value="0">choose user</option>
+     <h2>Login</h2>
+		<div class="container">
+				<form>
+					<div class="form-group">
+						<label for="exampleInputEmail1"><strong>Email Adress</strong></label>
+						<input id="login-email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1"><strong>Password</strong></label>
+						<input id="login-password" type="password" class="form-control" id="exampleInputPassword1" />
+					</div>
 
-          {{#each data}}
-          <option value={{dataValues.id}}>{{dataValues.name}}</option>
-          {{/each}}
+					<button id="user-select" type="submit" class="login-btn btn btn-primary">Submit</button>
+				</form>
+     <br>
+      <h2>Signup</h2>
+				<form>
+					<div class="form-group">
+						<label for="exampleInputEmail1"><strong>Email Adress</strong></label>
+						<input id="signup-email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1"><strong>Password</strong></label>
+						<input id="signup-password" type="password" class="form-control" id="exampleInputPassword1" />
+					</div>
 
-        </select>
-        <br>
-
-      </div>
-      <label for="exampleFormControlSelect1">
-        <h3>New User</h3>
-      </label>
-      <input type="text" id="username-create" class="form-control" placeholder="create user">
-      <br>
-      <button type="submit" id="user-create" class="btn btn-primary">
-        <h4>Lets go!</h4>
-      </button>
-
+					<button id="user-create" type="submit" class="signup-btn btn btn-primary">Submit</button>
+				</form>
+			
+		</div>
     </div>
     <div class="col-sm-4">
       <br>
