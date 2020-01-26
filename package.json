@@ -12,9 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.4",
+    "cookieparser": "^0.1.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.6.5",
     "sequelize": "^5.8.6"
   },
@@ -39,5 +43,6 @@
   "bugs": {
     "url": "https://github.com/jtrupe/Project-2/issues"
   },
-  "homepage": "https://github.com/jtrupe/Project-2#readme"
+  "homepage": "https://github.com/jtrupe/Project-2#readme",
+  "keywords": []
 }

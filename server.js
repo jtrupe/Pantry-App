@@ -1,6 +1,9 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+const cookieParser = require("cookie-parser");
+
+const jwt = require("jsonwebtoken");
 
 var db = require("./models");
 
@@ -10,7 +13,20 @@ var PORT = process.env.PORT || 8080;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static("public"));
+
+app.use((req, res, next) => {
+  const token = req.cookies.token;
+
+  if (token) {
+    const { id } = jwt.verify(token, process.env.APP_SECRET);
+
+    req.user = id;
+  }
+
+  next();
+});
 
 const hbs = {
   defaultLayout: "main",

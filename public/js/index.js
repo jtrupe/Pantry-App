@@ -1,20 +1,27 @@
 $("#user-create").click(function() {
-  var newUserName = $("#username-create")
+  var newUserName = $("#signup-email")
     .val()
     .trim();
-  $("#username-create").val("");
+  $("#signup-email").val("");
   // this ensures an empty username cannot be submitted.
   if (newUserName.length === 0) {
     return;
   }
-
+  var newUserPassword = $("#signup-password")
+    .val()
+    .trim();
+  $("#signup-password").val("");
+  // this ensures an empty username cannot be submitted.
+  if (newUserPassword.length === 0) {
+    return;
+  }
   // ajax post to create a new user.
   $.ajax({
     url: "/api/user/create",
     type: "POST",
     data: {
       name: newUserName,
-      password: "newPassword"
+      password: newUserPassword
     }
   }).then(function(res) {
     userId = res;
@@ -31,4 +38,48 @@ $("#user-select").change(function() {
   console.log(userId);
   window.sessionStorage.setItem("loggedInUser", userId);
   window.location = "/recipes/pantry";
+});
+
+$(document).ready(function() {
+  $(".login-btn").on("click", function(e) {
+    e.preventDefault();
+    console.log("test");
+
+    const userObj = {
+      name: $("#login-email")
+        .val()
+        .trim(),
+      password: $("#login-password")
+        .val()
+        .trim()
+    };
+
+    $.ajax({
+      method: "POST",
+      url: "/api/user/login",
+      data: userObj
+    });
+  });
+});
+
+$(document).ready(function() {
+  $(".signup-btn").on("click", function(e) {
+    e.preventDefault();
+    console.log("test");
+
+    const userObj = {
+      name: $("#signup-email")
+        .val()
+        .trim(),
+      password: $("#signup-password")
+        .val()
+        .trim()
+    };
+
+    $.ajax({
+      method: "POST",
+      url: "/api/user/signup",
+      data: userObj
+    });
+  });
 });

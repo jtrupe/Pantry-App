@@ -1,6 +1,8 @@
 var db = require("../models");
 var axios = require("axios");
 require("dotenv").config();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //helper to add 0s to new user, so that all pantry keys are the same length
 function printZeros(num) {
