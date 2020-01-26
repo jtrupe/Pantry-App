@@ -28,6 +28,7 @@
         <div class="recipe-item recipes text-center" data-recipe-id={{this.id}}>
           <h3 class="text-center recipe-title">{{this.title}}</h3>
           <img class="recipeImg border-box border-thin" src={{image}} alt="recipe-image">
+          {{#unless showSearchByIngredient}}
           <div class="row pt-3 pb-5">
 
             {{#if this.usedIngredients}}
@@ -36,7 +37,9 @@
             {{#if this.missedIngredients}}
             <div class="recipes-used-ingredients col-6">{{> ingredientsUnused}}</div>
             {{/if}}
+
           </div>
+          {{/unless}}
         </div>
       </div>
       {{#endRow @index}}
