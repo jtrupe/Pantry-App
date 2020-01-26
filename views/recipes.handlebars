@@ -1,19 +1,13 @@
 <div class="container">
-<br>
-  <div class="title mb-0">
-    <br>
-
-    <h1 class="display-4 text-center">{{header}}</h1>
-    <h2 class="text-center">Make a meal</h2>
-    <br>
-
-  </div>
-
   {{#if showNavBar}}
-  <div class="text-center mt-0">
-    {{> nav}}
-  </div>
+  {{> nav}}
   {{/if}}
+
+  <div class="title mb-0 py-3">
+    <h1 class="display-4 text-center m-2">{{header}}</h1>
+    <h2 class="text-center">Make a meal</h2>
+  </div>
+
 
   {{#if showSearchByName}}
   {{> searchByName}}
@@ -23,6 +17,8 @@
   {{> searchByIngredients}}
   {{/if}}
 
+  <br>
+  <br>
   <div class="pt-4">
     {{#each data}}
     {{#beginRow @index}}
@@ -30,8 +26,8 @@
       {{/beginRow}}
       <div class="col-sm-12 col-md-6">
         <div class="recipe-item recipes text-center" data-recipe-id={{this.id}}>
-          <h3 class="text-center">{{this.title}}</h3>
-          <img class="recipeImg" src={{image}} alt="recipe-image">
+          <h3 class="text-center recipe-title">{{this.title}}</h3>
+          <img class="recipeImg border-box border-thin" src={{image}} alt="recipe-image">
           <div class="row pt-3 pb-5">
 
             {{#if this.usedIngredients}}

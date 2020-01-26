@@ -1,50 +1,34 @@
 <div class="container">
-  <br>
-  <div class="title text-center">
-    <br>
-
-    <h1 class="display-4">Pantry</h1>
-    <h2>Add the ingredients you have on hand</h2>
-    <br>
-  </div>
-  <div class="text-center">{{#if showNavBar}}
+  {{#if showNavBar}}
   {{> nav}}
   {{/if}}
+
+  <div class="title text-center mb-0 py-3">
+    <h1 class="display-4 text-center m-2">Pantry</h1>
   </div>
 
   <div class="row">
 
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6 add">
-      <br>
-      <h2 class="text-center">Add Ingredients</h2>
+    <div class="col-sm-6 pt-3 add">
+      <h2 class="text-center"><u>Add Ingredients</u></h2>
       <input type="text" id="ingredient-search" class="form-control" placeholder="start typing to find your ingredient">
-      <div class="returned-search-items"></div>
+      <div class="returned-search-items mt-4"></div>
+    </div>
 
-      <br>
-      <br>
-      <div class="myIngredients text-center">
-      <br>
-      <h2 class="text-center"><u>My Ingredients:</u></h2>
+    <div class="myIngredients col-sm-6 pt-3">
+      <h2 class="text-center mb-4"><u>My Ingredients</u></h2>
       <div class="ingredient-list"></div>
       {{#each data}}
-      <div class="pantry-item">
-        <p><strong>Item Name: {{name}}</strong></p>
-        <p><strong>Qty:</strong></p>
-        <button value={{id}} class="pantry-item-remove text-center">Remove Item</button>
-        <button value={{id}} class="pantry-item-alter">Alter Quantity</button>
+      <div class="pantry-item ml-3 font-weight">
+        Item Name: {{name}}
+        <button value={{id}}
+          class="pantry-item-remove text-center btn btn-outline-dark pl-2 pr-1 float-right">❌</button>
         <hr>
       </div>
       {{/each}}
     </div>
-    </div>
-    <div class="col-sm-3"></div>
-    
   </div>
+</div>
 
-</div>
-</div>
-<br>
-</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/pantry.js"></script>

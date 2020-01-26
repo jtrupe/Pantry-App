@@ -1,12 +1,16 @@
-<h3>Search by Ingredients</h3>
-<div class="search-ingredients">
+<div class="search-ingredients mt-3 text-center">
   <div>
-    <button id="add-ingredient" class="btn btn-secondary">Add ingredient</button>
+    <button id="add-ingredient" class="btn btn-outline-dark">Add ingredient</button>
+    <button type="submit" id="search-recipe-ingredients" class="btn btn-outline-dark">Find Recipe</button>
   </div>
 
-  <div class="ingredient-item-div">
-    <input class="ingredient-item" type="text" class="form-control" placeholder="Ingredient name">
-    <button type="submit" class="btn btn-secondary ingredient-item-remove">&#10060</button>
+  <div class="ingredient-item-div mb-3 mt-2">
+    <div class="input-group mb-3 ">
+      <input type="text" class="form-control border border-dark ingredient-item" placeholder="Ingredient name"
+        aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-dark pl-2 pr-1 ingredient-item-remove" type="submit">❌</button>
+      </div>
+    </div>
   </div>
 </div>
-<button type="submit" id="search-recipe-ingredients" class="btn btn-primary">Find Recipe</button>
