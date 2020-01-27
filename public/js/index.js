@@ -65,6 +65,7 @@ $("#user-select").click(function() {
 //   });
 // });
 $(document).ready(function() {
+  localStorage.clear();
   $("#user-create").on("click", function(e) {
     e.preventDefault();
     console.log("test");
