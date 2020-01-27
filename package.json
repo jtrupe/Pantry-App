@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.1",
+    "bcrypt": "^3.0.7",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "cookieparser": "^0.1.0",

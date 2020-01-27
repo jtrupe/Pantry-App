@@ -33,12 +33,12 @@
 //   });
 // });
 
-// $("#user-select").click(function() {
-//   userId = this.value;
-//   console.log(userId);
-//   window.sessionStorage.setItem("loggedInUser", userId);
-//   window.location = "/recipes/pantry";
-// });
+$("#user-select").click(function() {
+  userId = this.value;
+  console.log(userId);
+  window.sessionStorage.setItem("loggedInUser", userId);
+  window.location = "/recipes/pantry";
+});
 
 // $(document).ready(function() {
 //   $("#user-select").on("click", function(e) {
