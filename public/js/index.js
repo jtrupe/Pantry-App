@@ -33,12 +33,12 @@
 //   });
 // });
 
-// // $("#user-select").change(function() {
-// //   userId = this.value;
-// //   console.log(userId);
-// //   window.sessionStorage.setItem("loggedInUser", userId);
-// //   window.location = "/recipes/pantry";
-// // });
+// $("#user-select").click(function() {
+//   userId = this.value;
+//   console.log(userId);
+//   window.sessionStorage.setItem("loggedInUser", userId);
+//   window.location = "/recipes/pantry";
+// });
 
 // $(document).ready(function() {
 //   $("#user-select").on("click", function(e) {
@@ -83,12 +83,8 @@ $(document).ready(function() {
       url: "/api/user/signup",
       data: userObj
     });
-    // .then(function(res) {
-    //       userId = res;
-    //       window.sessionStorage.setItem("loggedInUser", userId);
-    //       console.log(res);
-    //       console.log(this.id)
-    // redirect browser to returned route.
+    userId = this.value;
+    window.sessionStorage.setItem("loggedInUser", userId);
     window.location = "/pantry/manage";
   });
 });

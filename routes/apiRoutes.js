@@ -129,13 +129,15 @@ module.exports = function(app) {
 		});
 
 		if (!user) {
-			res.json('NO USER FOUND WITH THAT EMAIL');
+      res.json('NO USER FOUND WITH THAT EMAIL');
+      console.log("/////////////////////////////////////incoreect email!!!!!!!!!!!!")
 		}
 
 		const valid = await bcrypt.compare(req.body.password, user.password);
 
 		if (!valid) {
-			res.json('INCORRECT PASSWORD ENTERED');
+      res.json('INCORRECT PASSWORD ENTERED');
+      console.log("/////////////////////////////////////incorrect Password!!!!!!!!!!");
 		}
 
 		//create our cookie
