@@ -27,7 +27,7 @@ module.exports = function(app) {
           pantryKey: initialPantryKey
         },
         {
-          where: { pantryKey: "" }
+          where: { pantryKey: "1" }
         }
       ).done();
     });
@@ -68,7 +68,7 @@ module.exports = function(app) {
             console.log(user);
             for (let i = 0; i < results.length; i++) {
               var toId = i + 1;
-              if (toId === user) {
+              if (parseInt(toId) === parseInt(user)) {
                 continue;
               }
               newPantry = results[i].pantryKey + "0";

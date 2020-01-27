@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       pantryKey: {
         type: DataTypes.STRING(100).BINARY,
-        defaultValue: ""
+        defaultValue: "1"
       }
     },
     {
