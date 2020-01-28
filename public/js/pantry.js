@@ -29,7 +29,7 @@ $("#ingredient-search").keyup(function() {
         newDiv.append(hr);
         $(".returned-search-items").append(newDiv);
       });
-      //move this out of for each
+
       $(".newItem").click(function() {
         var newItem = this.name;
         console.log("Adding New Item to Pantry: " + newItem);

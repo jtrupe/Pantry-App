@@ -20,7 +20,6 @@ $("#user-create").click(function() {
     userId = res;
     window.sessionStorage.setItem("loggedInUser", userId);
     console.log(res);
-    // console.log(this.id)
     // redirect browser to returned route.
     window.location = "/pantry/manage";
   });

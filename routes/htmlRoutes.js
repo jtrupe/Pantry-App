@@ -1,8 +1,63 @@
 const db = require("../models");
 const axios = require("axios");
 
-assembleIngredientUrl = data => {
-  let ingredientString = "";
+//find user where the last char of their pantryKey =1
+//needs modification to find logged in user who is logged in
+//possibly modify User model to include loggedIn = bool
+function getData() {
+  let pantryData = [];
+  let userData = new Object();
+  db.User.findAll({}).then(function(results) {
+    const data = results;
+    let userKeysArr = [];
+    for (let i = 0; i < data.length; i++) {
+      userKeysArr.push(data[i].pantryKey);
+    }
+
+    for (let i = 0; i < userKeysArr.length; i++) {
+      let thisKey = userKeysArr[i];
+      let splitKey = thisKey.split("");
+      let reversed = splitKey.reverse();
+      let lastChar = reversed[0];
+      let condition = lastChar === 1;
+
+      if (condition) {
+        userData.id = results[i].id;
+        userData.name = results[i].name;
+        userData.pantryKey = results[i].pantryKey;
+      }
+    }
+
+    let idArr = keyToArr(userData.pantryKey);
+    for (let i = 0; i < idArr.length; i++) {
+      db.Ingredient.findOne({
+        where: { id: idArr[i] }
+      }).then(function(result) {
+        let ingObject = new Object();
+        ingObject.id = idArr[i];
+        ingObject.name = result.name;
+        pantryData.push(ingObject);
+      });
+    }
+  });
+  return pantryData;
+}
+
+function keyToArr(str) {
+  // console.log("k2r runs");
+  let pantryArr = [];
+  for (let i = 1; i <= str.length; i++) {
+    if (parseInt(str.charAt(i)) === 1) {
+      pantryArr.push(i);
+    }
+  }
+  return pantryArr;
+}
+
+let pantry = getData();
+
+function assembleIngredientUrl(data) {
+  var ingredientString = "";
   data.forEach(function(val, ind) {
     if (ind !== 0) {
       ingredientString += ",";
@@ -24,47 +79,47 @@ assembleIngredientUrl = data => {
 
 // !!THIS ARRAY TO BE DELETED ONCE SQL DATABASE IS SET UP!!
 // !!USE ONLY FOR TESTING PURPOSES!!
-const dummyPantryData = [
-  {
-    id: "2",
-    name: "egg",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  },
-  {
-    id: "4",
-    name: "milk",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  },
-  {
-    id: "7",
-    name: "flour",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  },
-  {
-    id: "9",
-    name: "apple juice",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  },
-  {
-    id: "10",
-    name: "butter",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  },
-  {
-    id: "12",
-    name: "broccoli",
-    createdAt: "2020-01-16T22:36:17.000Z",
-    updatedAt: "2020-01-16T22:36:17.000Z"
-  }
-];
+
+// var dummyPantryData = [
+//   {
+//     id: "2",
+//     name: "egg",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   },
+//   {
+//     id: "4",
+//     name: "milk",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   },
+//   {
+//     id: "7",
+//     name: "flour",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   },
+//   {
+//     id: "9",
+//     name: "apple juice",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   },
+//   {
+//     id: "10",
+//     name: "butter",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   },
+//   {
+//     id: "12",
+//     name: "broccoli",
+//     createdAt: "2020-01-16T22:36:17.000Z",
+//     updatedAt: "2020-01-16T22:36:17.000Z"
+//   }
+// ];
 
 module.exports = function(app) {
-  // This is the route to log in the user.
   app.get("/login", function(req, res) {
     db.User.findAll({}).then(function(dbUsers) {
       res.render("index", { title: "Login", data: dbUsers });
@@ -78,10 +133,12 @@ module.exports = function(app) {
 
   // This route should display all ingredients of the user
   app.get("/pantry/manage", function(req, res) {
+    // let pantry = getData();
+    console.log(pantry);
     res.render("pantry", {
       title: "Pantry",
       showNavBar: true,
-      data: dummyPantryData
+      data: pantry
     });
   });
 
@@ -90,8 +147,8 @@ module.exports = function(app) {
     const url =
       "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
 
-    const ingredients = assembleIngredientUrl(dummyPantryData);
-    const url2 =
+    var ingredients = assembleIngredientUrl(pantry);
+    var url2 =
       "&number=5&instructionsRequired=true&apiKey=" +
       process.env.SPOONACULAR_KEY;
     axios.get(url + ingredients + url2).then(function(response) {
