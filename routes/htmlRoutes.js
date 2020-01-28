@@ -19,7 +19,7 @@ function getData() {
       let splitKey = thisKey.split("");
       let reversed = splitKey.reverse();
       let lastChar = reversed[0];
-      let condition = lastChar === 1;
+      let condition = parseInt(lastChar) === 1;
 
       if (condition) {
         userData.id = results[i].id;
