@@ -1,11 +1,10 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
-
-var db = require("./models");
-
-var app = express();
-var PORT = process.env.PORT || 8080;
+const express = require("express");
+const exphbs = require("express-handlebars");
+const hbsHelpers = require("./views/helpers/helpers.js");
+const db = require("./models");
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -14,19 +13,7 @@ app.use(express.static("public"));
 
 const hbs = {
   defaultLayout: "main",
-  helpers: {
-    beginRow: function(conditional, options) {
-      if (conditional % 2 === 0) {
-        console.log(options.data.last);
-        return options.fn(this);
-      }
-    },
-    endRow: function(conditional, options) {
-      if (conditional % 2 !== 0 || options.data.last === true) {
-        return options.fn(this);
-      }
-    }
-  }
+  helpers: hbsHelpers
 };
 
 // Handlebars

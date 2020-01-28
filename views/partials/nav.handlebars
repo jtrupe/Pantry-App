@@ -1,31 +1,30 @@
-<br>
-<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-  <a href="/pantry/manage" class="btn btn-outline-dark" role="button" aria-pressed="true"><strong>Pantry</strong></a>
-</div>
+<div class="text-right mt-1 mb-2">
+  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <a href="/pantry/manage" class="btn btn-outline-dark" role="button" aria-pressed="true">Pantry</a>
+  </div>
   <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      <strong>Search Recipe By</strong>
-    </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      aria-haspopup="true" aria-expanded="false">Search Recipe By</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-        {{#if excludeSearchByName}}
-          <a class="dropdown-item disabled" href="#">Name</a>
-        {{else}}
-          <a class="dropdown-item" href="/recipes/search/name"><strong>Recipe Name</strong></a>
+      {{#if excludeSearchByName}}
+      <a class="dropdown-item disabled" href="#">Name</a>
+      {{else}}
+      <a class="dropdown-item" href="/recipes/search/name">Recipe Name</a>
 
-        {{/if}}
-        {{#if excludeSearchByIngredients}}
-          <a class="dropdown-item disabled" href="#">Ingredients</a>
-        {{else}}
-          <a class="dropdown-item" href="/recipes/search/ingredients"><strong>Any Ingredients</strong></a>
-        {{/if}}
+      {{/if}}
+      {{#if excludeSearchByIngredients}}
+      <a class="dropdown-item disabled" href="#">Ingredients</a>
+      {{else}}
+      <a class="dropdown-item" href="/recipes/search/ingredients">Any Ingredients</a>
+      {{/if}}
 
-        {{#if excludeSearchByPantry}}
-          <a class="dropdown-item disabled" href="#">My Ingredients</a>
-        {{else}}
-          <a class="dropdown-item" href="/recipes/pantry"><strong>My Ingredients</strong></a>
-        {{/if}}
+      {{#if excludeSearchByPantry}}
+      <a class="dropdown-item disabled" href="#">My Ingredients</a>
+      {{else}}
+      <a class="dropdown-item" href="/recipes/pantry">My Ingredients</a>
+      {{/if}}
 
-      </div>
+    </div>
   </div>
+</div>
