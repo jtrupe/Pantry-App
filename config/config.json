@@ -1,24 +1,20 @@
 {
   "development": {
-    "username": "tmh6daehbfe5iryz",
-    "password": "zl40vj3w5bulza4o",
-    "database": "bs6rmaza5733kfp3",
-    "host": "gtizpe105piw2gfq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "root",
+    "database": "recipesDB",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "tmh6daehbfe5iryz",
-    "password": "zl40vj3w5bulza4o",
-    "database": "bs6rmaza5733kfp3",
-    "host": "gtizpe105piw2gfq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "root",
+    "database": "recipesDB",
+    "host": "localhost",
     "dialect": "mysql",
     "logging": false
   },
   "production": {
-    "username": "tmh6daehbfe5iryz",
-    "password": "zl40vj3w5bulza4o",
-    "database": "bs6rmaza5733kfp3",
-    "host": "gtizpe105piw2gfq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
