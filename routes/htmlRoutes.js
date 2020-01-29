@@ -58,6 +58,7 @@ let pantry = getData();
 
 function assembleIngredientUrl(data) {
   var ingredientString = "";
+
   data.forEach(function(val, ind) {
     if (ind !== 0) {
       ingredientString += ",";
