@@ -66,7 +66,7 @@ function assembleIngredientUrl(data) {
     ingredientString += val.name;
   });
   return ingredientString;
-};
+}
 
 // const renderOptions = {
 //   title: "title",
